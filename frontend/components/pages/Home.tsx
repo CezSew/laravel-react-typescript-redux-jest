@@ -18,6 +18,7 @@ const Home: React.SFC <HomeProps> = ({username, testNumber, addNumber}) => {
                 <h1 className="o-main-title c-home__title">
                     home
                 </h1>
+                <p>testing redux:</p>
                 <p>Hello, {username}: number {testNumber}</p>
                 <Link to="/login">/login</Link>
                 <br/>

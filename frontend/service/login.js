@@ -1,4 +1,4 @@
-export function LoginService(type, userData) {
+export function login(type, userData) {
     var myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
     
