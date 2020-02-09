@@ -1,6 +1,5 @@
 import React, { useContext, useEffect } from "react";
 // import '../../css/pages/login.scss';
-import {login} from '../../service/login';
 import axios from 'axios';
 
 interface LoginProps {
@@ -17,8 +16,8 @@ export default class Login extends React.Component<LoginProps, LoginState> {
     constructor(props) {
         super(props);
         this.state = {
-            username: 'test12322@test.pl',
-            password: 'admin1',
+            username: '',
+            password: '',
             error: false
         }
 
@@ -35,7 +34,6 @@ export default class Login extends React.Component<LoginProps, LoginState> {
           localStorage.setItem('example-jwt-jwt', res.data.token);
           this.props.history.push('/protected')
         }).catch(() => {
-            console.log('Error!');
             this.setState({
                 error: true
             });
@@ -43,20 +41,36 @@ export default class Login extends React.Component<LoginProps, LoginState> {
     }
 
     onChange(e) {
-        // this.setState({[e.target.name]: e.target.value})
+        const fieldName = e.target.name;
+        const fieldValue = e.target.value;
+        const result = {};
+        result[fieldName] = fieldValue;
+        this.setState({...result});
     }
 
     render() {
+        let errorElem = <React.Fragment></React.Fragment>;
+        if(this.state.error) {
+            errorElem = <p>Login or password is incorrect.</p>
+        }
         return (
             <main className="c-login">
                 <div className="o-container">
                     <h1 className="o-main-title">
                         login
                     </h1>
-                    
-                    <input type="text" name="username" placeholder="username" onChange={this.onChange}/>
-                    <input type="password" name="password" placeholder="password" onChange={this.onChange}/>
-                    <input type="submit" name="Login" onClick={e => this.handleLogin(e)}/>
+                    {errorElem}
+                    <form>
+                        <label>
+                            Username
+                            <input type="text" name="username" placeholder="username" onKeyUp={this.onChange}/>
+                        </label>
+                        <label>
+                            Password
+                            <input type="password" name="password" placeholder="password" onKeyUp={this.onChange}/>
+                        </label>
+                        <input type="submit" name="Login" onClick={e => this.handleLogin(e)}/>
+                    </form>
                 </div>
             </main>
         );

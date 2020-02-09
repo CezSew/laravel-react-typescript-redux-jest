@@ -2,21 +2,18 @@ import React, { Component, createElement } from 'react';
 import axios from 'axios';
 import { withRouter } from 'react-router-dom';
 import { getJwt } from './../../helpers';
+import {Link} from 'react-router-dom';
+import { connect } from 'react-redux';
+import { compose } from 'redux';
+import store from "../../store";
 
 interface AuthComponentProps {
-    history: any
-}
-interface AuthComponentState {
-    user: string|undefined,
+    history: any,
+    setUser: Function,
+    user: any
 }
 
-class AuthComponent extends Component<AuthComponentProps, AuthComponentState> {
-  constructor(props) {
-    super(props);
-    this.state = {
-      user: undefined
-    };
-  }
+class AuthComponent extends Component<AuthComponentProps> {
 
   componentDidMount() {
     this.getUser();
@@ -25,25 +22,25 @@ class AuthComponent extends Component<AuthComponentProps, AuthComponentState> {
   getUser() {
     const jwt = getJwt();
     if (!jwt) {
-      this.setState({
-        user: null
-      });
+      this.props.setUser(null);
       return;
     }
 
     axios.get('http://localhost:8000/api/user', { headers: { Authorization: getJwt() } }).then(res => {
-      this.setState({
-        user: res.data.user
-      })
+      this.props.setUser(res.data.user);
     });
   }
 
   render() {
-    const { user } = this.state;
+    const {
+      user,
+    } = this.props;
+
     if (user === undefined) {
       return (
         <div>
-          Loading...
+          <p>You need to be logged in!</p>
+          <p>Please <Link to="/login">Login</Link> or  <Link to="/">go back to homepage</Link></p>
         </div>
       );
     }
@@ -56,4 +53,17 @@ class AuthComponent extends Component<AuthComponentProps, AuthComponentState> {
   }
 }
 
-export default withRouter(AuthComponent);
+const mapStateToProps = state => ({
+  user: state.user
+})
+
+const mapDispatchToProps = dispatch => {
+  return {
+      setUser: (user) => dispatch({ type: 'SET_USER', payload: {user} }),
+  }
+}
+
+export default compose<any>(
+  withRouter,
+  connect(mapStateToProps, mapDispatchToProps)
+)(AuthComponent);

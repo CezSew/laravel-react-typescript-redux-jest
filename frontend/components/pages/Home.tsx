@@ -3,21 +3,26 @@ import {Link} from 'react-router-dom';
 import '../../css/pages/home.scss';
 import {Button} from '../utils/Button';
 import { connect } from 'react-redux';
-import store from "../../store";
 
 interface HomeProps {
     username: string,
     testNumber: number,
+    user: {
+        name: string|undefined
+    },
     addNumber: Function
-   }
+}
 
-const Home: React.SFC <HomeProps> = ({username, testNumber, addNumber}) => {
+const Home: React.SFC <HomeProps> = ({user, username, testNumber, addNumber}) => {
     return (
         <main className="c-home">
             <div className="o-container">
                 <h1 className="o-main-title c-home__title">
                     home
                 </h1>
+                {user 
+                ? <p> Logged in as {user.name}</p>
+                : <p>User not logged in</p>}
                 <p>testing redux:</p>
                 <p>Hello, {username}: number {testNumber}</p>
                 <Link to="/login">/login</Link>
@@ -32,7 +37,8 @@ const Home: React.SFC <HomeProps> = ({username, testNumber, addNumber}) => {
 
 const mapStateToProps = state => ({
     username: state.username,
-    testNumber: state.testNumber
+    testNumber: state.testNumber,
+    user: state.user
 })
 
 const mapDispatchToProps = dispatch => {

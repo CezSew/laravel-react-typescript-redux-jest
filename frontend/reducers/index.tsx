@@ -1,5 +1,6 @@
 import {
-  ADD_NUMBER
+  ADD_NUMBER,
+  SET_USER
 } from '../constants/action-types';
 
 const initialState = {
@@ -13,6 +14,10 @@ function rootReducer(state = initialState, action) {
     case ADD_NUMBER: 
       return Object.assign({}, state, {
         testNumber: state.testNumber + action.payload.number
+      })
+    case SET_USER:
+      return Object.assign({}, state, {
+        user: action.payload.user
       })
     default:
       return state;
