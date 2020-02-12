@@ -1,19 +1,20 @@
-import React, { Component, createElement } from 'react';
+import React, { Component } from 'react';
 import axios from 'axios';
 import { withRouter } from 'react-router-dom';
-import { getJwt } from './../../helpers';
+import { getJwt } from '../../helpers';
 import {Link} from 'react-router-dom';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import store from "../../store";
 
-interface AuthComponentProps {
+interface AuthGuardProps {
     history: any,
     setUser: Function,
-    user: any
+    user: any,
+    isUserLoggedIn: boolean|null
 }
 
-class AuthComponent extends Component<AuthComponentProps> {
+class AuthGuard extends Component<AuthGuardProps> {
 
   componentDidMount() {
     this.getUser();
@@ -28,33 +29,25 @@ class AuthComponent extends Component<AuthComponentProps> {
 
     axios.get('http://localhost:8000/api/user', { headers: { Authorization: getJwt() } }).then(res => {
       this.props.setUser(res.data.user);
+
+      if(!res.data.user) {
+        this.props.history.push('/login');
+      }
     });
   }
 
   render() {
-    const {
-      user,
-    } = this.props;
-
-    if (user === undefined) {
-      return (
-        <div>
-          <p>You need to be logged in!</p>
-          <p>Please <Link to="/login">Login</Link> or  <Link to="/">go back to homepage</Link></p>
-        </div>
-      );
+    if(!this.props.isUserLoggedIn) {
+      return <div className="o-container"><p>Loading ...</p></div>;
+    } else {
+      return this.props.children;
     }
-
-    if (user === null) {
-      this.props.history.push('/login');
-    }
-
-    return this.props.children;
   }
 }
 
 const mapStateToProps = state => ({
-  user: state.user
+  user: state.user,
+  isUserLoggedIn: state.isUserLoggedIn
 })
 
 const mapDispatchToProps = dispatch => {
@@ -66,4 +59,4 @@ const mapDispatchToProps = dispatch => {
 export default compose<any>(
   withRouter,
   connect(mapStateToProps, mapDispatchToProps)
-)(AuthComponent);
+)(AuthGuard);

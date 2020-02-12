@@ -32,7 +32,7 @@ export default class Login extends React.Component<LoginProps, LoginState> {
             password: this.state.password
         }).then(res => {
           localStorage.setItem('example-jwt-jwt', res.data.token);
-          this.props.history.push('/protected')
+          this.props.history.push('/')
         }).catch(() => {
             this.setState({
                 error: true

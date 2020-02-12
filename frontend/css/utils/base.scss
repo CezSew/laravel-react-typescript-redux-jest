@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Poppins:300,400,600,700&display=swap');
 
-body {
+body, html {
     box-sizing: border-box;
     margin: 0;
     font-size: 10px;
@@ -36,10 +36,18 @@ h3 {
 .o-container {
     max-width: 300px;
     margin: 0 auto;
+    
     @media(min-width: 800px) {
         max-width: 750px;
     }
+    
     @media(min-width:1200px) {
         max-width: 1150px;
+    }
+
+    &--space-between {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
     }
 }
