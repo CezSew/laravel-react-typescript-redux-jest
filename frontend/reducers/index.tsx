@@ -1,5 +1,5 @@
 import {
-  SET_USER
+  SET_USER, USER_LOGOUT
 } from '../constants/action-types';
 
 const initialState = {
@@ -21,6 +21,11 @@ function rootReducer(state = initialState, action) {
           isUserLoggedIn: true
         })
       }
+    case USER_LOGOUT:
+      return Object.assign({}, state, {
+        user: undefined,
+        isUserLoggedIn: false
+      })
     default:
       return state;
   }

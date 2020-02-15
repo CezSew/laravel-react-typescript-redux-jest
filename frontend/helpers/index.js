@@ -1,3 +1,3 @@
 export const getJwt = () => {
-    return 'bearer ' + localStorage.getItem('example-jwt-jwt');
+    return 'bearer ' + localStorage.getItem('jwt');
 }
