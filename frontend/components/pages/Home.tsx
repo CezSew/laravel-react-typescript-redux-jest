@@ -17,13 +17,18 @@ const Home: React.SFC <HomeProps> = ({user}) => {
             <Header/>
             <main className="c-home">
                 <div className="o-container">
-                    <h2 className="o-main-title c-home__title">
+                    <section className="c-app__title-container">
+                        <h1 className="o-h1 c-app__main-title">Laravel + react + redux + typescript + sass</h1>
+                        <h2 className="c-app__sub-title">is awesome</h2>
+                        <a href="https://github.com/CezSew" className="c-app__title-author">with love by cezsew @2020</a>
+                    </section>
+                    <p className="o-main-title c-home__title">
                         Homepage
-                    </h2>
-                    <h3>
+                    </p>
+                    <p>
                         Visit protected site: <br/>
                         <Link to="/protected">Protected</Link>
-                    </h3>                          
+                    </p>                          
                 </div>
             </main>
         </AuthOverlord>

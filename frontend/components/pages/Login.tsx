@@ -1,6 +1,7 @@
 import React, { useContext, useEffect } from "react";
 // import '../../css/pages/login.scss';
 import axios from 'axios';
+import {Link} from 'react-router-dom';
 
 interface LoginProps {
     history: any
@@ -71,6 +72,7 @@ export default class Login extends React.Component<LoginProps, LoginState> {
                         </label>
                         <input type="submit" name="Login" onClick={e => this.handleLogin(e)}/>
                     </form>
+                    <h2><Link to="/">Go back to homepage</Link></h2>
                 </div>
             </main>
         );

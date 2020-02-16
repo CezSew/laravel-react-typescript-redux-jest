@@ -18,7 +18,9 @@ const Header: React.FC <HeaderProps>= ({user, isUserLoggedIn, dispatchLogout}) =
     return (
         <header className="c-header">
             <div className="o-container o-container--space-between">
-                <h1><a href="/">Logo</a></h1>
+                <p className="c-header__logo">
+                    <a href="/">Logo</a>
+                </p>
                 {isUserLoggedIn 
                     ? <React.Fragment>
                         <p>Logged in as {user.name}</p>
