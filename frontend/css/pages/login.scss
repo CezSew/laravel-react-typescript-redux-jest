@@ -1,0 +1,49 @@
+@import '../utils/variables.scss';
+
+.c-login__form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60vh;
+    width: 100%;
+}
+
+.c-login-form {
+    display: flex;
+    flex-direction: column;
+    min-width: 15vw;
+    max-width: 50rem;
+    align-items: center;
+    padding: 4rem;
+    border: 0.2rem dashed $blue;
+    border-radius: 0.5rem; 
+}
+
+.c-login-form__label {
+    display: block;
+    width: 100%;
+    margin-bottom: 2rem;
+}
+
+.c-login-form__input {
+    display: block;
+    box-sizing: border-box;
+    padding: 1rem;
+    background-color: transparent;
+    border: .1rem solid $blue;
+    width: 100%;
+    border-radius: 0.5rem;
+
+    &--submit {
+        background-color: $blue;
+        color: $white;
+        border: none;
+        cursor: pointer;
+        max-width: 15rem;
+        transition: 0.3s background-color;
+
+        &:hover {
+            background-color: $purple;
+        }
+    }
+}

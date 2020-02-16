@@ -24,7 +24,7 @@ const Header: React.FC <HeaderProps>= ({user, isUserLoggedIn, dispatchLogout}) =
                 {isUserLoggedIn 
                     ? <React.Fragment>
                         <p>Logged in as {user.name}</p>
-                        <button className="c-header__logout" onClick={() => dispatchLogout()}>logout</button>
+                        <button className="c-header__logout" onClick={() => dispatchLogout()}><a href="/">logout</a></button>
                       </React.Fragment> 
                     : <Link to="/login">login</Link>}
             </div>

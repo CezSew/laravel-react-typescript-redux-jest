@@ -1,5 +1,11 @@
 @import '../utils/variables';
 
 .c-home {
-    margin-top: 5rem;
+    margin-top: 2rem;
+}
+
+.c-home__content {
+    margin-top: 3rem;
+    padding: 1rem 2rem;
+    border: 0.4rem dashed $purple; 
 }

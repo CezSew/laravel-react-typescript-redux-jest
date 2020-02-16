@@ -1,7 +1,8 @@
 import React, { useContext, useEffect } from "react";
-// import '../../css/pages/login.scss';
+import '../../css/pages/login.scss';
 import axios from 'axios';
 import {Link} from 'react-router-dom';
+import Header from '../parts/Header';
 
 interface LoginProps {
     history: any
@@ -52,29 +53,36 @@ export default class Login extends React.Component<LoginProps, LoginState> {
     render() {
         let errorElem = <React.Fragment></React.Fragment>;
         if(this.state.error) {
-            errorElem = <p>Login or password is incorrect.</p>
+            errorElem = <p className="o-error-container__text">Login or password is incorrect.</p>
         }
         return (
-            <main className="c-login">
-                <div className="o-container">
-                    <h1 className="o-main-title">
-                        login
-                    </h1>
-                    {errorElem}
-                    <form>
-                        <label>
-                            Username
-                            <input type="text" name="username" placeholder="username" onKeyUp={this.onChange}/>
-                        </label>
-                        <label>
-                            Password
-                            <input type="password" name="password" placeholder="password" onKeyUp={this.onChange}/>
-                        </label>
-                        <input type="submit" name="Login" onClick={e => this.handleLogin(e)}/>
-                    </form>
-                    <h2><Link to="/">Go back to homepage</Link></h2>
-                </div>
-            </main>
+            <React.Fragment>
+                <Header/>
+                <main className="c-login">
+                    <div className="o-container">
+                        <h1 className="o-main-title">
+                            Login page
+                        </h1>
+                        <section className="c-login__form-container">
+                            <form className="c-login-form">
+                                <label className="c-login-form__label">
+                                    Username
+                                    <input className="c-login-form__input" type="text" name="username" placeholder="username" onKeyUp={this.onChange}/>
+                                </label>
+                                <label className="c-login-form__label">
+                                    Password
+                                    <input className="c-login-form__input" type="password" name="password" placeholder="password" onKeyUp={this.onChange}/>
+                                </label>
+                                <div className="o-error-container">
+                                    {errorElem}
+                                </div>
+                                <input className="c-login-form__input c-login-form__input--submit" type="submit" name="Login" onClick={e => this.handleLogin(e)}/>
+                            </form>
+                        </section>
+                        <h2><Link to="/">Go back to homepage</Link></h2>
+                    </div>
+                </main>
+            </React.Fragment>
         );
     }
 }

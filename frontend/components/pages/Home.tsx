@@ -22,13 +22,15 @@ const Home: React.SFC <HomeProps> = ({user}) => {
                         <h2 className="c-app__sub-title">is awesome</h2>
                         <a href="https://github.com/CezSew" className="c-app__title-author">with love by cezsew @2020</a>
                     </section>
-                    <p className="o-main-title c-home__title">
-                        Homepage
-                    </p>
-                    <p>
-                        Visit protected site: <br/>
-                        <Link to="/protected">Protected</Link>
-                    </p>                          
+                    <section className="o-page-content">
+                        <p className="o-main-title c-home__title">
+                            Homepage
+                        </p>
+                        <p>
+                            Visit protected site: <br/>
+                            <Link to="/protected">Protected</Link>
+                        </p>  
+                    </section>                        
                 </div>
             </main>
         </AuthOverlord>
