@@ -13,9 +13,9 @@ I also implemented a JWT auth, with frontend login/logout and protected routes f
 * Fill out a .env file in the project root using the .env.example file as a template
 * Install composer dependencies using composer install
 * Run:
-- ```php artisan key:generate``` 
-- ```php artisan migrate``` 
-- ```php artisan passport:install```
-- ```php artisan storage:link```
+ ```php artisan key:generate``` 
+ ```php artisan migrate``` 
+ ```php artisan passport:install```
+ ```php artisan storage:link```
 *Install NPM dependencies using npm install
 * create a database (remeber to define it in .envrc) and ```run php artisan migrate```
