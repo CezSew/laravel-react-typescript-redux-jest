@@ -15,7 +15,7 @@ I also implemented a JWT auth, with frontend login/logout and protected routes f
 * Run:
  ```php artisan key:generate``` 
  ```php artisan migrate``` 
- ```php artisan passport:install```
+ ```php artisan jwt:secret```
  ```php artisan storage:link```
 * Install NPM dependencies using npm install
 * create a database (remeber to define it in .envrc) and ```run php artisan migrate```
